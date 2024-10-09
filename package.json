@@ -1,0 +1,22 @@
+{
+  "name": "ingradient",
+  "version": "1.0.0",
+  "description": "A Recipe Search Engine.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jorstors/Ingradient.git"
+  },
+  "author": "Justus Jones",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jorstors/Ingradient/issues"
+  },
+  "homepage": "https://github.com/Jorstors/Ingradient#readme",
+  "dependencies": {
+    "electron": "^32.1.2"
+  }
+}

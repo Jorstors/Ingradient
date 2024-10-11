@@ -1,14 +1,71 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: afacad flux;
   background-color: #f5f5f5;
+  font-size: 14pt;
 }
 
-.container {
+.login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
+  background: rgb(251, 165, 63);
+  background: radial-gradient(
+    circle,
+    rgba(251, 165, 63, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+}
+
+.login-container h1 {
+  font-size: 5rem;
+  color: white;
+  font-family: prata;
+}
+
+.login-container h2 {
+  font-size: 2rem;
+  color: white;
+  margin: 1rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+.form-container input {
+  border: 0.1rem solid lightgoldenrodyellow;
+  font-size: 70%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  font-family: afacad flux;
+  border-radius: 0.7rem;
+}
+
+.password {
+  -webkit-text-security: disc;
+}
+
+.form-container button {
+  padding: 0.3rem 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  border: 0.1rem solid lightgoldenrodyellow;
+  border-radius: 0.7rem;
+  font-size: 80%;
+  cursor: pointer;
+  background-color: lightgoldenrodyellow;
+  font-family: afacad flux;
+}
+
+.warning {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.3rem;
 }

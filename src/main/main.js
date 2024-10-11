@@ -23,19 +23,16 @@ function createWindow() {
   });
 
   mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 }
 
 app.on("ready", createWindow);
 
 // IPC example: Save data to SQLite
-ipcMain.handle("save-data", async (event, data) => {
+ipcMain.handle("save-login", async (event, data) => {
   return new Promise((resolve, reject) => {
     db.run(
-      `INSERT INTO user_data(name, age) VALUES(?, ?)`,
-      [data.name, data.age],
+      `INSERT INTO user_data(user, pass) VALUES(?, ?)`,
+      [data.user, data.pass],
       function (err) {
         if (err) reject(err);
         else resolve(`Data saved with ID ${this.lastID}`);

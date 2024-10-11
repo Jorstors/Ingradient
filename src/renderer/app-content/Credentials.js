@@ -28,7 +28,10 @@ function Credentials() {
           value={pass}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleSave}>Enter</button>
+        <div className="sign-reg">
+          <button onClick={handleSave}>Sign In</button>
+          <button onClick={handleSave}>Register</button>
+        </div>
         <p className="warning">
           <em>
             <b>Warning:</b>

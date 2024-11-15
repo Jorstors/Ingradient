@@ -1,0 +1,8 @@
+#loading-wheel {
+  filter: grayscale(100%) brightness(0.3);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+}

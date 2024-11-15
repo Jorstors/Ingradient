@@ -1,0 +1,131 @@
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #1e1e1e;
+  --compliment-color: #ffeda6;
+  --gradient-color-light: #f4d03f;
+  --gradient-color-medium: #acc047;
+  --gradient-color-dark: #16a085;
+
+  font-size: 30px;
+  font-family: afacad flux, sans-serif;
+  color: var(--primary-color);
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 2000px) {
+  :root {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  :root {
+    font-size: 23px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 892px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(
+    ellipse at bottom,
+    var(--gradient-color-medium) 0%,
+    var(--gradient-color-dark) 100%
+  );
+  background-repeat: no-repeat;
+}
+
+h1 {
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+input {
+  background-color: var(--primary-color);
+  font-size: 70%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  font-family: afacad flux, sans-serif;
+  border: 0;
+  border-radius: 0.7rem;
+  outline: none;
+}
+input::placeholder {
+  color: var(--secondary-color);
+}
+
+.nice-button {
+  padding: 0.3rem 0.5rem;
+  border: 0.1rem solid var(--secondary-color);
+  border-radius: 0.7rem;
+  font-size: 80%;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  font-family: afacad flux, sans-serif;
+  color: var(--primary-color);
+}
+
+.nice-button:hover {
+  background-color: white;
+  color: var(--secondary-color);
+}
+.nice-button:active {
+  transform: scale(0.95);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4rem;
+  outline: 0;
+  text-align: center;
+  border: 2px solid var(--secondary-color);
+}
+input::placeholder {
+  color: var(--secondary-color);
+}

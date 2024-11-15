@@ -1,0 +1,64 @@
+|-- .env
+|-- .firebase
+    |-- hosting.cHVibGlj.cache
+    |-- hosting.cHVibGljXHNyYw.cache
+|-- .firebaserc
+|-- .github
+    |-- workflows
+        |-- firebase-hosting-merge.yml
+        |-- firebase-hosting-pull-request.yml
+|-- .gitignore
+|-- config
+    |-- ingradient-1808d-firebase-adminsdk-2xezz-196416e8fc.json
+|-- firebase-debug.log
+|-- firebase.json
+|-- firestore.indexes.json
+|-- firestore.rules
+|-- LICENSE
+|-- package-lock.json
+|-- package.json
+|-- Procfile
+|-- public
+    |-- 404.html
+    |-- assets
+        |-- ingradient tab logo.png
+        |-- loading.webp
+    |-- index.css
+    |-- index.html
+    |-- router.js
+    |-- src
+        |-- About
+            |-- about.css
+            |-- about.html
+            |-- about.js
+        |-- Account
+            |-- account.css
+            |-- account.html
+            |-- account.js
+        |-- Credentials
+            |-- credentials.css
+            |-- credentials.html
+            |-- credentials.js
+        |-- Pantry
+            |-- pantry.css
+            |-- pantry.html
+            |-- pantry.js
+        |-- Search
+            |-- search.css
+            |-- search.html
+            |-- search.js
+        |-- Settings
+            |-- Pass_Change
+                |-- pass_change.css
+                |-- pass_change.html
+                |-- pass_change.js
+            |-- settings.css
+            |-- settings.html
+            |-- settings.js
+        |-- shared_util
+            |-- API
+                |-- API.js
+            |-- firestore.js
+            |-- global.css
+|-- README.md
+|-- server.js

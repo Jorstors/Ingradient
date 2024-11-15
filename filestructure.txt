@@ -15,7 +15,6 @@
 |-- firestore.indexes.json
 |-- firestore.rules
 |-- LICENSE
-|-- newfile.txt
 |-- package-lock.json
 |-- package.json
 |-- Procfile

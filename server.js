@@ -2,15 +2,17 @@ const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
 const admin = require("firebase-admin");
+const fs = require("fs");
 
 // Load environment variables
 dotenv.config();
 
 // Initialize Firebase Admin SDK
+const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
+
 admin.initializeApp({
-  credential: admin.credential.cert(
-    JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
-  ),
+  credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://your-project-id.firebaseio.com",
 });
 

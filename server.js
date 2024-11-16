@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
-const admin = require("firebase-admin");
+const admin = require("firebase-admin/app");
 
 // Load environment variables
 dotenv.config();
@@ -30,6 +30,32 @@ app.get("/api/edamam", async (req, res) => {
     res.json({ apiKey, apiID });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch data" });
+  }
+});
+
+// Example Firestore read operation
+app.get("/api/firestore/read", async (req, res) => {
+  try {
+    const doc = await db.collection("your-collection").doc("your-doc-id").get();
+    if (!doc.exists) {
+      res.status(404).json({ error: "Document not found" });
+    } else {
+      res.json(doc.data());
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to read data" });
+  }
+});
+
+// Example Firestore write operation
+app.post("/api/firestore/write", async (req, res) => {
+  try {
+    await db.collection("your-collection").doc("your-doc-id").set({
+      field: "value",
+    });
+    res.json({ message: "Document written successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to write data" });
   }
 });
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
-const admin = require("firebase-admin/app");
+const admin = require("firebase-admin");
 
 // Load environment variables
 dotenv.config();
@@ -11,7 +11,7 @@ const serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://your-project-id.firebaseio.com",
+  databaseURL: "https://ingradient-1808d.firebaseio.com",
 });
 
 const db = admin.firestore();

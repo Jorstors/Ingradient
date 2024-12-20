@@ -6,6 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "/src/Search/search.html";
   } else {
     console.log("User is not authenticated, redirecting to credentials page");
-    window.location.href = "/src/Credentials/credentials.html";
+    window.location.href = "/src/Search/search.html"; // For now, until we have a working login page
   }
 });

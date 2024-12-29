@@ -58,6 +58,8 @@ body {
     var(--gradient-color-dark) 100%
   );
   background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
 }
 
 h1 {

@@ -15,11 +15,38 @@
   <link rel="stylesheet" href="./settings.css">
   <link rel="stylesheet" href="../shared_util/global.css">
   <link rel="icon" href="../../assets/ingradient tab logo.png" type="image/x-icon">
+  <!-- font awesome icons -->
+  <script src="https://kit.fontawesome.com/92d444bd89.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <script src="./settings.js" type="module" async></script>
+  <div class="page-container">
+    <sidebar class="navbar-container">
+      <!-- navigation - logo and links -->
+      <a href="../Search/search.html" class="nav-link"><i class="fa-solid fa-utensils"></i>
+        <p>Search</p>
+      </a>
+      <a href="../Pantry/pantry.html" class="nav-link"><i class="fa-solid fa-shop"></i>
+        <p>Pantry</p>
+      </a>
+      <a href="../Account/account.html" class="nav-link"><i class="fa-solid fa-user"></i>
+        <p>Account</p>
+      </a>
+      <a href="../About/about.html" class="nav-link"><i class="fa-solid fa-mug-hot"></i>
+        <p>About</p>
+      </a>
+      <a href="../Settings/settings.html" class="settings nav-link"><i class="fa-solid fa-gear"></i>
+        <p>Settings</p>
+      </a>
+      <!-- nav extend -->
+    </sidebar>
 
+    <input type="checkbox" id="icon-checkbox">
+    <i class="fa-solid fa-layer-group" id="icon-image"></i>
+
+    <h2>Settings</h2>
+  </div>
+  <script src="./settings.js" type="module" async></script>
 </body>
 
 </html>

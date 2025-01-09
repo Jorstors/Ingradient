@@ -2,7 +2,7 @@
 
 Ingradient is a aesthetic recipe search engine designed to provide users with an intuitive and efficient way to discover and manage recipes. This project showcases my proficiency in full-stack web development, integrating Firebase for backend services, deploying applications on Heroku and Firebase Hosting, and implementing responsive frontend designs using modern JavaScript frameworks and CSS methodologies.
 
-[ingradient.site](http://ingradient.site) in your browser!
+[ingradient.site](http://ingradient.site)
 
 
 ## Project Structure

@@ -44,9 +44,31 @@
     <input type="checkbox" id="icon-checkbox">
     <i class="fa-solid fa-layer-group" id="icon-image"></i>
 
-    <h2>Pantry</h2>
+    <div class="recommended-container">
+
+      <!-- search input and button -->
+      <h3 class="search-info">
+        <i class="fa-solid fa-arrow-turn-up"></i>
+        Press Enter to Add to Pantry
+      </h3>
+      <div class="search-box">
+        <input name="search-input" id="search-input" type="text" value="" placeholder="Pantry Ingredients...">
+        <button id="search-button"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
+      <div class="ingredient-list">
+      </div>
+      <div class="recommended-recipes">
+        <h2>- Recommended Recipes -</h2>
+        <!-- Scripted Recommendations Go Here -->
+      </div>
+    </div>
+    <!-- website name -->
+    <h3 class="website-name">ingradient.</h3>
   </div>
-  <script src="./pantry.js" type="module" async></script>
+
+  <script src=" ./pantry.js" type="module" async>
+  </script>
 </body>
 
 </html>

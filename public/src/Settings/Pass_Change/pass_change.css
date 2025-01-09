@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  background: teal;
+}
+
+.page-container {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  justify-content: center;
+}
+
+/* NAVBAR */
+.navbar-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 3.3rem;
+  height: 100vh;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 10;
+  transition: 0.35s cubic-bezier(0.49, -0.53, 0.19, 1.39);
+  overflow: hidden;
+  box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.8);
+}
+
+.navbar-container:hover {
+  width: 12rem;
+}
+.navbar-container a {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 12rem;
+  padding: 0.5rem 0;
+}
+.navbar-container i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.3rem;
+}
+.navbar-container p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+}
+
+.settings {
+  margin-top: auto;
+}
+
+.navbar-container a:hover {
+  background: var(--secondary-color);
+  border-radius: 0 30px 30px 0;
+}
+
+#icon-checkbox {
+  position: fixed;
+  top: 1rem;
+  left: 1.5rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  width: 2rem;
+  opacity: 0;
+  z-index: 2;
+}
+
+#icon-image {
+  color: var(--secondary-color);
+  position: fixed;
+  top: 1rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  z-index: 1;
+}
+
+#icon-checkbox:hover {
+  cursor: pointer;
+}
+#icon-checkbox:active + #icon-image {
+  transform: scale(0.9);
+}
+
+.navbar-container a:active {
+  background: var(--gradient-color-dark);
+}
+
+.hidden {
+  width: 0;
+  overflow: hidden;
+}
+
+.expanded {
+  width: 12rem;
+}
+
+h2 {
+  color: var(--secondary-color);
+}

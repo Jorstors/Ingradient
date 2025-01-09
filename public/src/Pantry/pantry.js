@@ -5,6 +5,57 @@ const navbarContainer = document.querySelector(".navbar-container");
 const navbarIcon = document.getElementById("icon-image");
 const navbarCheckbox = document.getElementById("icon-checkbox");
 
+// Ingredient adding
+
+// Grab the ingredient search input
+
+let ingredientSearch = document.getElementById("search-input");
+
+// If enter key is pressed, add ingredient to the list
+ingredientSearch.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    console.log("enter key pressed");
+    let ingredient = document.getElementById("search-input").value;
+    if (ingredient === "") {
+      return;
+    }
+    // Add ingredient to the list
+    addIngredient(ingredient);
+  }
+});
+// If search button is pressed, add ingredient to the list
+document.getElementById("search-button").addEventListener("click", () => {
+  console.log("search button clicked");
+  let ingredient = document.getElementById("search-input").value;
+  if (ingredient === "") {
+    return;
+  }
+  // Add ingredient to the list
+  addIngredient(ingredient);
+});
+
+// Funtion to add ingredient to current list
+
+let ingredientList = document.querySelector(".ingredient-list");
+
+function addIngredient(ingredient) {
+  // Create a new list item
+  let newIngredient = document.createElement("li");
+  newIngredient.classList.add("ingredient-list-item");
+  newIngredient.innerHTML = `
+  <button class="fa-solid fa-xmark"></button>&nbsp;${ingredient}
+  `;
+  ingredientList.appendChild(newIngredient);
+
+  // Add event listener on the button to remove ingredient from list
+  newIngredient.querySelector("button").addEventListener("click", () => {
+    newIngredient.remove();
+  });
+
+  // Clear the search input
+  ingredientSearch.value = "";
+}
+
 // Function to check screen size and apply the appropriate styles
 function checkScreenSize() {
   if (mediaQuery.matches) {

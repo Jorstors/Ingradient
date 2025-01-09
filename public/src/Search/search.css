@@ -184,6 +184,8 @@
   width: 60%;
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Result Boxes */
 .result {
   position: relative;
   z-index: inherit;
@@ -242,6 +244,9 @@
 .result-image {
   border-left: 5px solid var(--secondary-color);
   height: 100%;
+  object-fit: cover;
+  width: 10rem;
+  height: 10rem;
 }
 
 .no-results {

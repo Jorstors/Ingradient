@@ -147,7 +147,7 @@ h2 {
   align-items: center;
 }
 
-.recommended-recipes h2 {
+.recommended-text {
   font-size: 2rem;
   margin: 1rem;
   text-align: center;
@@ -249,4 +249,96 @@ h2 {
     right: 50%;
     transform: translateX(50%);
   }
+}
+
+/* RECOMMENDED RESULTS */
+
+.results {
+  height: auto;
+  width: 60%;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Result Boxes */
+.result {
+  position: relative;
+  z-index: inherit;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: clamp(10rem, 10rem, 15rem);
+  overflow: hidden;
+  width: 100%;
+  border: 0.1rem solid var(--secondary-color);
+  margin: 1.5rem 0;
+  border-radius: 1rem;
+  box-shadow: 0.5rem 0.5rem 0 0 rgba(0, 0, 0, 0.8);
+}
+.result-title,
+.result-link {
+  margin: 1.5rem;
+}
+.result-title {
+  width: 100%;
+  min-width: 6rem;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.result-title h3 {
+  font-weight: 400;
+}
+.result-link {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+  margin-left: auto;
+  margin-right: 2rem;
+  margin-bottom: 3rem;
+  width: 2rem;
+  height: 100%;
+}
+.result-link a {
+  display: flex;
+  align-items: inherit;
+  justify-content: inherit;
+  min-width: fit-content;
+  height: fit-content;
+  text-wrap: nowrap;
+}
+.result-link a:hover {
+  color: var(--gradient-color-dark);
+}
+.result-image {
+  border-left: 5px solid var(--secondary-color);
+  height: 100%;
+  object-fit: cover;
+  width: 10rem;
+  height: 10rem;
+}
+
+.no-results {
+  width: 100%;
+  height: 13rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.load-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 3rem;
+  text-wrap: nowrap;
+  margin: 4rem auto;
+  position: static;
 }

@@ -20,7 +20,9 @@ async function fetchRecipes(query) {
       `https://api.edamam.com/api/recipes/v2${queryAppend}`
     );
     let data = await response.json();
-    console.log(data);
+    // Cut off the number of recipes to 1 (random recipe from 1 - 20 hits)
+    let randomIndex = Math.floor(Math.random() * data.hits.length);
+    data.hits = data.hits.slice(randomIndex, randomIndex + 1);
     currentObject = data;
     renderRecipes(data);
   } catch (err) {
@@ -28,29 +30,10 @@ async function fetchRecipes(query) {
   }
 }
 
-async function fetchMore() {
-  try {
-    let response = await fetch(`${currentObject._links.next.href}`);
-    let data = await response.json();
-    console.log(data);
-    if (data.hits.length === 0) {
-      console.log("no more results");
-      return;
-    }
-    currentObject = data;
-
-    let isMore = true;
-    renderRecipes(data, isMore);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 async function renderRecipes(data, isMore = false) {
   if (data.hits.length > 0) {
-    if (!isMore) {
-      container.innerHTML = "";
-    }
+    // updateRecipes will remove all recipes, this will only add more
+
     data.hits.forEach((hit) => {
       let recipe = hit.recipe;
 
@@ -68,28 +51,6 @@ async function renderRecipes(data, isMore = false) {
           `;
       container.appendChild(card);
     });
-  }
-
-  if (data.to !== data.count) {
-    // if there are more results
-    // adding load more button
-    let button = document.createElement("button");
-    button.classList.add("load-button");
-    button.classList.add("nice-button");
-    button.innerHTML = "Load More";
-    container.appendChild(button);
-    button.addEventListener("click", () => {
-      // delete load button
-      button.remove();
-      fetchMore();
-    });
-  }
-
-  // if no results
-  if (data.hits.length === 0) {
-    container.innerHTML = `
-          <h3 class="no-results">no results found</h3>
-        `;
   }
 }
 
@@ -116,7 +77,6 @@ ingredientSearch.addEventListener("keyup", (e) => {
 });
 // If search button is pressed, add ingredient to the list
 document.getElementById("search-button").addEventListener("click", () => {
-  console.log("search button clicked");
   let ingredient = document.getElementById("search-input").value;
   if (ingredient === "") {
     return;
@@ -146,55 +106,63 @@ function addIngredient(ingredient) {
   // Add event listener on the button to remove ingredient from list
   newIngredient.querySelector("button").addEventListener("click", () => {
     newIngredient.remove();
+
     // Filter out the removed ingredient from the array (remove it)
     ingredientArray = ingredientArray.filter((item) => item !== ingredient);
-    updateRecipes();
+
+    // Update the stored ingredients
+    localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
   });
 
   // Clear the search input
   ingredientSearch.value = "";
 
-  // Update the recommended recipes
-  updateRecipes();
+  // Update the stored ingredients
+  localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
 }
 
 // Function to update the recommended recipes
 function updateRecipes() {
-  // Update the stored ingredients
-  localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
-  // Clear the current recipes
+  console.log("updating recipes...");
+  // Clear the current recommended recipes
   let recipeList = document.querySelector(".results");
   recipeList.innerHTML = "";
 
   // Generate new recipes (random number of random ingredients)
-  let numberOfRecipes = 5;
+  let numberOfRecipes = 4;
 
-  // Random number
   for (let i = 0; i < numberOfRecipes; i++) {
-    // Recipe to query
+    // Recipe ingredients to query
     let randomRecipe = [];
 
-    // Grabbing number of ingredients to use
+    // Random number of ingredients
     let numberOfIngredients =
       Math.floor(Math.random() * ingredientArray.length) + 1;
 
+    // Limit number of ingredients to 5
+    if (numberOfIngredients > 5) numberOfIngredients = 5;
+
     // Random ingredients
-    for (let i = 0; i < numberOfIngredients; i++) {
+    for (let j = 0; j < numberOfIngredients; j++) {
       let randomIngredient =
         ingredientArray[Math.floor(Math.random() * ingredientArray.length)];
-      // Add random ingredient to random recipe
-      randomRecipe.push(randomIngredient);
+
+      // Add random ingredient to random recipe (if ingredient is not already present)
+      if (!randomRecipe.includes(randomIngredient))
+        randomRecipe.push(randomIngredient);
     }
 
+    console.log("fetching recipe for ", randomRecipe + "...");
+
     // Query the recipe API with randomRecipe, and take the first result
-    let ingredientString = ingredientArray.join(", ");
+    let ingredientString = randomRecipe.join(", ");
     fetchRecipes(ingredientString);
   }
 }
 
 // Check if there are stored ingredients
 let storedIngredients = JSON.parse(localStorage.getItem("ingredients"));
-if (storedIngredients && storedIngredients.length > 0) {
+if (storedIngredients && localStorage.getItem("ingredients") !== "[]") {
   storedIngredients.forEach((ingredient) => {
     addIngredient(ingredient);
   });
@@ -202,6 +170,14 @@ if (storedIngredients && storedIngredients.length > 0) {
   // If no stored ingredients, send user a message
   fetchRecipes("No recipes to display");
 }
+
+// Upon loading the page, update the recipe list
+updateRecipes();
+
+// Every minute, update the recipe list
+setInterval(() => {
+  updateRecipes();
+}, 60000);
 
 // Function to check screen size and apply the appropriate styles
 function checkScreenSize() {

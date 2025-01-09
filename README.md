@@ -9,7 +9,7 @@ Ingradient is a aesthetic recipe search engine designed to provide users with an
 
 The repository is organized as follows:
 
-## Features
+## Aspiring Features
 
 - **User Authentication**: Secure login and signup functionality ensuring user data protection.
 - **Recipe Search**: Integration with the Edamam API to fetch and display a wide variety of recipes based on user queries.

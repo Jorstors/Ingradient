@@ -100,16 +100,12 @@ const navbarContainer = document.querySelector(".navbar-container");
 const navbarIcon = document.getElementById("icon-image");
 const navbarCheckbox = document.getElementById("icon-checkbox");
 
-// Ingredient adding
-
 // Grab the ingredient search input
-
 let ingredientSearch = document.getElementById("search-input");
 
 // If enter key is pressed, add ingredient to the list
 ingredientSearch.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    console.log("enter key pressed");
     let ingredient = document.getElementById("search-input").value;
     if (ingredient === "") {
       return;
@@ -130,11 +126,9 @@ document.getElementById("search-button").addEventListener("click", () => {
 });
 
 // Funtion to add ingredient to current list
-
 let ingredientList = document.querySelector(".ingredient-list");
 
 // Ingredient array to store ingredients actively
-
 let ingredientArray = [];
 
 function addIngredient(ingredient) {
@@ -157,18 +151,17 @@ function addIngredient(ingredient) {
     updateRecipes();
   });
 
-  // Update the recommended recipes after a buffer time, to allow for multiple ingredients to be added at once
-  setTimeout(() => {
-    updateRecipes();
-  }, 10000);
-
   // Clear the search input
   ingredientSearch.value = "";
+
+  // Update the recommended recipes
+  updateRecipes();
 }
 
 // Function to update the recommended recipes
-
 function updateRecipes() {
+  // Update the stored ingredients
+  localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
   // Clear the current recipes
   let recipeList = document.querySelector(".results");
   recipeList.innerHTML = "";
@@ -197,28 +190,17 @@ function updateRecipes() {
     let ingredientString = ingredientArray.join(", ");
     fetchRecipes(ingredientString);
   }
-
-  // Store the current ingredients in local storage
-  localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
 }
 
-// On page load, restore ingredient array and render recipes
-let storedIngredients = localStorage.getItem("ingredients");
-
-// Check if storedIngredients is empty
-if (storedIngredients == "[]") storedIngredients = false;
-
-if (storedIngredients) {
-  // Ingredients stored, so restore them
-  console.log("Ingredients stored");
-  ingredientArray = JSON.parse(storedIngredients);
-  ingredientArray.forEach((ingredient) => {
+// Check if there are stored ingredients
+let storedIngredients = JSON.parse(localStorage.getItem("ingredients"));
+if (storedIngredients && storedIngredients.length > 0) {
+  storedIngredients.forEach((ingredient) => {
     addIngredient(ingredient);
   });
 } else {
-  // No ingredients stored, so give a message
-  console.log("No ingredients stored");
-  fetchRecipes("Give, The, User, A, Message");
+  // If no stored ingredients, send user a message
+  fetchRecipes("No recipes to display");
 }
 
 // Function to check screen size and apply the appropriate styles

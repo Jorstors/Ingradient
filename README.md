@@ -36,7 +36,6 @@ The repository is organized as follows:
 ### Firebase:
 
 - **Firestore**: Real-time database for storing user data and pantry items.
-- **Firebase Hosting**: Deploying the frontend with seamless integration.
 - **Firebase Admin SDK**: Managing backend services securely.
 
 ### Deployment & DevOps:

@@ -41,7 +41,7 @@ The repository is organized as follows:
 ### Deployment & DevOps:
 
 - **Heroku**: Hosting the Node.js server and managing environment configurations.
-- **GitHub Actions**: Automating deployment workflows for Firebase Hosting.
+- **GitHub Actions**: Automating deployment workflows for Heroku Hosting.
 
 ### Version Control:
 

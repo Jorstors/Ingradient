@@ -92,6 +92,14 @@ let ingredientList = document.querySelector(".ingredient-list");
 let ingredientArray = [];
 
 function addIngredient(ingredient) {
+  // If there were no ingredients before, update in 10 seconds
+  if (ingredientArray.length === 0) {
+    console.log("updating recipes in 10 seconds...");
+    setTimeout(() => {
+      updateRecipes();
+    }, 10000);
+  }
+
   // Create a new list item
   let newIngredient = document.createElement("li");
   newIngredient.classList.add("ingredient-list-item");
@@ -174,10 +182,10 @@ if (storedIngredients && localStorage.getItem("ingredients") !== "[]") {
 // Upon loading the page, update the recipe list
 updateRecipes();
 
-// Every minute, update the recipe list
+// Every 45 seconds, update the recipe list
 setInterval(() => {
   updateRecipes();
-}, 60000);
+}, 45000);
 
 // Function to check screen size and apply the appropriate styles
 function checkScreenSize() {

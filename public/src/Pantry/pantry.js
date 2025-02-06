@@ -147,6 +147,8 @@ function updateRecipes() {
     message.style.color = getComputedStyle(
       document.documentElement
     ).getPropertyValue("--secondary-color");
+    // Clear the skeleton loader
+    recipeList.innerHTML = "";
     recipeList.appendChild(message);
     return;
   }

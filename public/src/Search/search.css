@@ -185,6 +185,66 @@
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.result-skeleton {
+  position: relative;
+  z-index: inherit;
+  background: var(--skeleton-color-light);
+  color: var(--skeleton-color-dark);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: clamp(10rem, 10rem, 15rem);
+  overflow: hidden;
+  width: 100%;
+  border: 0.1rem solid var(--skeleton-color-dark);
+  margin: 1.5rem 0;
+  border-radius: 1rem;
+  /* Shimmer animation */
+  animation: shimmer 5s infinite linear;
+  background: linear-gradient(
+    to right,
+    var(--skeleton-color-light) 0%,
+    var(--skeleton-color-dark) 50%,
+    var(--skeleton-color-light) 100%
+  );
+  background-size: 200%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Blank rectangle to mimic image */
+.result-skeleton::before {
+  position: absolute;
+  content: "";
+  z-index: 1;
+  top: 13.5%;
+  right: 4%;
+  background: var(--skeleton-color-dark);
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 1rem;
+}
+/* Blank rectangle to mimic title */
+.result-skeleton::after {
+  position: absolute;
+  content: "";
+  z-index: 1;
+  top: 13.5%;
+  left: 5%;
+  background: var(--skeleton-color-dark);
+  width: 60%;
+  height: 1.5rem;
+  border-radius: 1rem;
+}
+
 /* Result Boxes */
 .result {
   position: relative;

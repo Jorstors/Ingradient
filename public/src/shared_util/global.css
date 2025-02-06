@@ -1,6 +1,8 @@
 :root {
   --primary-color: #ffffff;
   --secondary-color: #1e1e1e;
+  --skeleton-color-dark: #ffffff;
+  --skeleton-color-light: #ffffffc5;
   --compliment-color: #ffeda6;
   --gradient-color-light: #f4d03f;
   --gradient-color-medium: #acc047;

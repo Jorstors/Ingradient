@@ -12,6 +12,8 @@ async function fetchRecipes(query) {
   // Wait for API credentials to be fetched
   await apiCredentialsPromise;
 
+  console.log("fetching recipes for query:", query);
+
   let queryAppend = `?type=public&q=${query}&app_id=${apiID}&app_key=${apiKey}`;
   currentQuery = query;
 
@@ -32,6 +34,7 @@ async function fetchRecipes(query) {
 
 async function renderRecipes(data, isMore = false) {
   if (data.hits.length > 0) {
+    console.log("rendering recipes in: ", data);
     // updateRecipes will remove all recipes, this will only add more
 
     data.hits.forEach((hit) => {
@@ -132,6 +135,22 @@ function updateRecipes() {
   console.log("updating recipes...");
   // Clear the current recommended recipes
   let recipeList = document.querySelector(".results");
+
+  // If there are no ingredients, send a message
+  if (ingredientArray.length === 0) {
+    let message = document.createElement("div");
+    message.innerHTML = `
+    <h3>Add more ingredients to see recommended recipes!</h3>`;
+    message.style.textAlign = "center";
+    message.style.fontStyle = "italic";
+    // Grab color variable from CSS
+    message.style.color = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--secondary-color");
+    recipeList.appendChild(message);
+    return;
+  }
+
   recipeList.innerHTML = "";
 
   // Generate new recipes (random number of random ingredients)
@@ -172,7 +191,13 @@ function debounceUpdateRecipes() {
     timeout = setTimeout(() => {
       updateRecipes();
     }, delay);
-    console.log("debounced updateRecipes");
+    // Clear the current recommended recipes and show a skeleton loader
+
+    // Add a skeleton loader card while fetching recipes
+    container.innerHTML = "";
+    let skeletonLoader = document.createElement("div");
+    skeletonLoader.classList.add("result-skeleton");
+    container.appendChild(skeletonLoader);
   };
 }
 
@@ -186,13 +211,14 @@ setTimeout(() => {
 
 // Check if there are stored ingredients
 let storedIngredients = JSON.parse(localStorage.getItem("ingredients"));
-if (storedIngredients && localStorage.getItem("ingredients") !== "[]") {
+if (storedIngredients && storedIngredients.length !== 0) {
   storedIngredients.forEach((ingredient) => {
     addIngredient(ingredient);
   });
 } else {
   // If no stored ingredients, send user a message
-  fetchRecipes("No recipes to display");
+  fetchRecipes("Sending user a message");
+  console.log("No stored ingredients");
 }
 
 // Function to check screen size and apply the appropriate styles

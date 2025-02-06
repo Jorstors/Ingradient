@@ -9,6 +9,12 @@ let currentQuery = null;
 let container = document.querySelector(".results");
 
 async function fetchRecipes(query) {
+  // Add a skeleton loader card while fetching recipes
+  container.innerHTML = "";
+  let skeletonLoader = document.createElement("div");
+  skeletonLoader.classList.add("result-skeleton");
+  container.appendChild(skeletonLoader);
+
   // Wait for API credentials to be fetched
   await apiCredentialsPromise;
 

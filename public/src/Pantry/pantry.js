@@ -92,13 +92,8 @@ let ingredientList = document.querySelector(".ingredient-list");
 let ingredientArray = [];
 
 function addIngredient(ingredient) {
-  // If there were no ingredients before, update in 10 seconds
-  if (ingredientArray.length === 0) {
-    console.log("updating recipes in 10 seconds...");
-    setTimeout(() => {
-      updateRecipes();
-    }, 10000);
-  }
+  // Debounce the updateRecipes function
+  debouncedUpdateRecipes(10 * 1000);
 
   // Create a new list item
   let newIngredient = document.createElement("li");
@@ -120,6 +115,9 @@ function addIngredient(ingredient) {
 
     // Update the stored ingredients
     localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
+
+    // Update the recipes
+    debouncedUpdateRecipes(10 * 1000);
   });
 
   // Clear the search input
@@ -160,13 +158,31 @@ function updateRecipes() {
         randomRecipe.push(randomIngredient);
     }
 
-    console.log("fetching recipe for ", randomRecipe + "...");
-
     // Query the recipe API with randomRecipe, and take the first result
     let ingredientString = randomRecipe.join(", ");
     fetchRecipes(ingredientString);
   }
 }
+
+// Debounce updateRecipes function
+function debounceUpdateRecipes() {
+  let timeout;
+  return function (delay = 10 * 1000) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      updateRecipes();
+    }, delay);
+    console.log("debounced updateRecipes");
+  };
+}
+
+let debouncedUpdateRecipes = debounceUpdateRecipes();
+
+// On page load, after ingredients are loaded, update the recipes
+// Total time to wait: 1 second
+setTimeout(() => {
+  debouncedUpdateRecipes(0); // Clear the timeout and update immediately
+}, 1000);
 
 // Check if there are stored ingredients
 let storedIngredients = JSON.parse(localStorage.getItem("ingredients"));
@@ -178,14 +194,6 @@ if (storedIngredients && localStorage.getItem("ingredients") !== "[]") {
   // If no stored ingredients, send user a message
   fetchRecipes("No recipes to display");
 }
-
-// Upon loading the page, update the recipe list
-updateRecipes();
-
-// Every 45 seconds, update the recipe list
-setInterval(() => {
-  updateRecipes();
-}, 45000);
 
 // Function to check screen size and apply the appropriate styles
 function checkScreenSize() {

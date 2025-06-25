@@ -17,6 +17,13 @@ Ingradient is a lightweight web application for discovering recipes based on the
 
 </div>
 
+## 🎬 See For Yourself
+<div align="center">
+  
+  ![Video Demo](https://github.com/Jorstors/Ingradient/blob/main/public/assets/ingradientdemo.gif)
+</div>
+
+
 ## ✨ Features
 
 - **🔎 Recipe Search** – Queries the Edamam API and displays results with a skeleton loader for smooth user experience.
